@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftUINavigation - NavigationLink</title>
+    <link rel="stylesheet" type="text/css" href="/swiftui-navigation/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/swiftui-navigation/">
+            <strong>
+                SwiftUINavigation
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#navigationlink.init(unwrapping:destination:onnavigate:label:)">init(unwrapping:​destination:​on​Navigate:​label:​)</a></li><li class="initializer"><a href="#navigationlink.init(unwrapping:case:destination:onnavigate:label:)">init(unwrapping:​case:​destination:​on​Navigate:​label:​)</a></li><li class="initializer"><a href="#navigationlink.init(unwrapping:onnavigate:destination:label:)">init(unwrapping:​on​Navigate:​destination:​label:​)</a></li><li class="initializer"><a href="#navigationlink.init(unwrapping:case:onnavigate:destination:label:)">init(unwrapping:​case:​on​Navigate:​destination:​label:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Extensions on</small>
+    <code class="name">NavigationLink</code>
+</h1>
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="navigationlink.init(unwrapping:destination:onnavigate:label:)">
+    <h3>
+        <code><a href="#navigationlink.init(unwrapping:destination:onnavigate:label:)">init(unwrapping:​destination:​on​Navigate:​label:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">renamed</span>: <span class="string literal">"init(unwrapping:onNavigate:destination:label:)"</span>)
+  <span class="keyword">public</span> <span class="keyword">init</span>&lt;<span class="variable">Value</span>, <span class="variable">WrappedDestination</span>&gt;(
+    <span class="variable">unwrapping</span> <span class="variable">value</span>: <span class="type">Binding</span>&lt;<span class="type">Value</span>?&gt;,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">destination</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Binding</span>&lt;<span class="type">Value</span>&gt;) -&gt; <span class="type">WrappedDestination</span>,
+    <span class="variable">onNavigate</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="keyword">_</span> <span class="variable">isActive</span>: <span class="type">Bool</span>) -&gt; <span class="type">Void</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">label</span>: () -&gt; <span class="type">Label</span>
+  ) <span class="keyword">where</span> <span class="type">Destination</span> == <span class="type">WrappedDestination</span>?  </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="initializer" id="navigationlink.init(unwrapping:case:destination:onnavigate:label:)">
+    <h3>
+        <code><a href="#navigationlink.init(unwrapping:case:destination:onnavigate:label:)">init(unwrapping:​case:​destination:​on​Navigate:​label:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(*, <span class="variable">deprecated</span>, <span class="variable">renamed</span>: <span class="string literal">"init(unwrapping:case:onNavigate:destination:label:)"</span>)
+  <span class="keyword">public</span> <span class="keyword">init</span>&lt;<span class="variable">Enum</span>, <span class="variable">Case</span>, <span class="variable">WrappedDestination</span>&gt;(
+    <span class="variable">unwrapping</span> <span class="variable">enum</span>: <span class="type">Binding</span>&lt;<span class="type">Enum</span>?&gt;,
+    <span class="variable">case</span> <span class="variable">casePath</span>: <span class="type">CasePath</span>&lt;<span class="type">Enum</span>, <span class="type">Case</span>&gt;,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">destination</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Binding</span>&lt;<span class="type">Case</span>&gt;) -&gt; <span class="type">WrappedDestination</span>,
+    <span class="variable">onNavigate</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Bool</span>) -&gt; <span class="type">Void</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">label</span>: () -&gt; <span class="type">Label</span>
+  ) <span class="keyword">where</span> <span class="type">Destination</span> == <span class="type">WrappedDestination</span>?  </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="initializer" id="navigationlink.init(unwrapping:onnavigate:destination:label:)">
+    <h3>
+        <code><a href="#navigationlink.init(unwrapping:onnavigate:destination:label:)">init(unwrapping:​on​Navigate:​destination:​label:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">iOS</span>, <span class="variable">introduced</span>: <span class="number literal">13</span>, <span class="variable">deprecated</span>: <span class="number literal">16</span>)
+  <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">macOS</span>, <span class="variable">introduced</span>: <span class="number literal">10.15</span>, <span class="variable">deprecated</span>: <span class="number literal">13</span>)
+  <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">tvOS</span>, <span class="variable">introduced</span>: <span class="number literal">13</span>, <span class="variable">deprecated</span>: <span class="number literal">16</span>)
+  <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">watchOS</span>, <span class="variable">introduced</span>: <span class="number literal">6</span>, <span class="variable">deprecated</span>: <span class="number literal">9</span>)
+  <span class="keyword">public</span> <span class="keyword">init</span>&lt;<span class="variable">Value</span>, <span class="variable">WrappedDestination</span>&gt;(
+    <span class="variable">unwrapping</span> <span class="variable">value</span>: <span class="type">Binding</span>&lt;<span class="type">Value</span>?&gt;,
+    <span class="variable">onNavigate</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="keyword">_</span> <span class="variable">isActive</span>: <span class="type">Bool</span>) -&gt; <span class="type">Void</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">destination</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Binding</span>&lt;<span class="type">Value</span>&gt;) -&gt; <span class="type">WrappedDestination</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">label</span>: () -&gt; <span class="type">Label</span>
+  ) <span class="keyword">where</span> <span class="type">Destination</span> == <span class="type">WrappedDestination</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Creates a navigation link that presents the destination view when a bound value is non-<code>nil</code>.</p>
+
+</div>
+<div class="discussion">
+    <p>This allows you to drive navigation to a destination from an optional value. When the
+optional value becomes non-<code>nil</code> a binding to an honest value is derived and passed to the
+destination. Any edits made to the binding in the destination are automatically reflected
+in the parent.</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+  <span class="attribute">@</span><span class="type">State</span> <span class="keyword">var</span> <span class="variable">postToEdit</span>: <span class="type">Post</span>?
+  <span class="attribute">@</span><span class="type">State</span> <span class="keyword">var</span> <span class="variable">posts</span>: [<span class="type">Post</span>]
+
+  <span class="keyword">var</span> <span class="variable">body</span>: <span class="keyword">some</span> <span class="type">View</span> {
+    <span class="variable">ForEach</span>(<span class="keyword">self</span>.<span class="variable">posts</span>) { <span class="variable">post</span> <span class="keyword">in</span>
+      <span class="variable">NavigationLink</span>(<span class="variable">unwrapping</span>: <span class="keyword">self</span>.<span class="variable">$postToEdit</span>) { <span class="variable">isActive</span> <span class="keyword">in</span>
+        <span class="keyword">self</span>.<span class="variable">postToEdit</span> = <span class="variable">isActive</span> ? <span class="variable">post</span> : <span class="keyword">nil</span>
+      } <span class="variable">destination</span>: { <span class="variable">$draft</span> <span class="keyword">in</span>
+        <span class="variable">EditPostView</span>(<span class="variable">post</span>: <span class="type">$draft</span>)
+      } <span class="variable">onNavigate</span>:  <span class="type">label</span>: {
+        <span class="variable">Text</span>(<span class="variable">post</span>.<span class="variable">title</span>)
+      }
+    }
+  }
+}
+
+<span class="keyword">struct</span> <span class="type">EditPostView</span>: <span class="type">View</span> {
+  <span class="attribute">@</span><span class="type">Binding</span> <span class="keyword">var</span> <span class="variable">post</span>: <span class="type">Post</span>
+  <span class="keyword">var</span> <span class="variable">body</span>: <span class="keyword">some</span> <span class="type">View</span> { ... }
+}
+</code></pre></body></html>
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>value</th>
+    <td><code class="type">Binding&lt;Value?&gt;</code></td>
+    <td><p>A binding to an optional source of truth for the destination. When <code>value</code> is non-<code>nil</code>, a non-optional binding to the value is passed to the <code>destination</code> closure. The destination can use this binding to produce its content and write changes back to the source of truth. Upstream changes to <code>value</code> will also be instantly reflected in the destination. If <code>value</code> becomes <code>nil</code>, the destination is dismissed.</p>
+</td>
+</tr>
+<tr>
+    <th>on​Navigate</th>
+    <td><code class="type">@escaping (_ is​Active:​ Bool) -&gt; Void</code></td>
+    <td><p>A closure that executes when the link becomes active or inactive with a boolean that describes if the link was activated or not. Use this closure to populate the source of truth when it is passed a value of <code>true</code>. When passed <code>false</code>, the system will automatically write <code>nil</code> to <code>value</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>destination</th>
+    <td><code class="type">@escaping (Binding&lt;Value&gt;) -&gt; Wrapped​Destination</code></td>
+    <td><p>A view for the navigation link to present.</p>
+</td>
+</tr>
+<tr>
+    <th>label</th>
+    <td><code class="type">() -&gt; Label</code></td>
+    <td><p>A view builder to produce a label describing the <code>destination</code> to present.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="navigationlink.init(unwrapping:case:onnavigate:destination:label:)">
+    <h3>
+        <code><a href="#navigationlink.init(unwrapping:case:onnavigate:destination:label:)">init(unwrapping:​case:​on​Navigate:​destination:​label:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">iOS</span>, <span class="variable">introduced</span>: <span class="number literal">13</span>, <span class="variable">deprecated</span>: <span class="number literal">16</span>)
+  <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">macOS</span>, <span class="variable">introduced</span>: <span class="number literal">10.15</span>, <span class="variable">deprecated</span>: <span class="number literal">13</span>)
+  <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">tvOS</span>, <span class="variable">introduced</span>: <span class="number literal">13</span>, <span class="variable">deprecated</span>: <span class="number literal">16</span>)
+  <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">watchOS</span>, <span class="variable">introduced</span>: <span class="number literal">6</span>, <span class="variable">deprecated</span>: <span class="number literal">9</span>)
+  <span class="keyword">public</span> <span class="keyword">init</span>&lt;<span class="variable">Enum</span>, <span class="variable">Case</span>, <span class="variable">WrappedDestination</span>&gt;(
+    <span class="variable">unwrapping</span> <span class="variable">enum</span>: <span class="type">Binding</span>&lt;<span class="type">Enum</span>?&gt;,
+    <span class="variable">case</span> <span class="variable">casePath</span>: <span class="type">CasePath</span>&lt;<span class="type">Enum</span>, <span class="type">Case</span>&gt;,
+    <span class="variable">onNavigate</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Bool</span>) -&gt; <span class="type">Void</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">destination</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Binding</span>&lt;<span class="type">Case</span>&gt;) -&gt; <span class="type">WrappedDestination</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">label</span>: () -&gt; <span class="type">Label</span>
+  ) <span class="keyword">where</span> <span class="type">Destination</span> == <span class="type">WrappedDestination</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Creates a navigation link that presents the destination view when a bound enum is non-<code>nil</code>
+and matches a particular case.</p>
+
+</div>
+<div class="discussion">
+    <p>This allows you to drive navigation to a destination from an enum of values. When the
+optional value becomes non-<code>nil</code> <em>and</em> matches a particular case of the enum, a binding to an
+honest value is derived and passed to the destination. Any edits made to the binding in the
+destination are automatically reflected in the parent.</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+  <span class="attribute">@</span><span class="type">State</span> <span class="keyword">var</span> <span class="variable">route</span>: <span class="type">Route</span>?
+  <span class="attribute">@</span><span class="type">State</span> <span class="keyword">var</span> <span class="variable">posts</span>: [<span class="type">Post</span>]
+
+  <span class="keyword">enum</span> <span class="type">Route</span> {
+    <span class="keyword">case</span> <span class="variable">edit</span>(<span class="type">Post</span>)
+    <span class="comment">/* other routes */</span>
+  }
+
+  <span class="keyword">var</span> <span class="variable">body</span>: <span class="keyword">some</span> <span class="type">View</span> {
+    <span class="variable">ForEach</span>(<span class="keyword">self</span>.<span class="variable">posts</span>) { <span class="variable">post</span> <span class="keyword">in</span>
+      <span class="variable">NavigationLink</span>(<span class="variable">unwrapping</span>: <span class="keyword">self</span>.<span class="variable">$route</span>, <span class="variable">case</span>: /<span class="variable">Route</span>.<span class="variable">edit</span>) { <span class="variable">isActive</span> <span class="keyword">in</span>
+        <span class="keyword">self</span>.<span class="variable">route</span> = <span class="variable">isActive</span> ? .<span class="variable">edit</span>(<span class="variable">post</span>) : <span class="keyword">nil</span>
+      } <span class="variable">destination</span>: { <span class="variable">$draft</span> <span class="keyword">in</span>
+        <span class="variable">EditPostView</span>(<span class="variable">post</span>: <span class="type">$draft</span>)
+      } <span class="variable">label</span>: {
+        <span class="variable">Text</span>(<span class="variable">post</span>.<span class="variable">title</span>)
+      }
+    }
+  }
+}
+
+<span class="keyword">struct</span> <span class="type">EditPostView</span>: <span class="type">View</span> {
+  <span class="attribute">@</span><span class="type">Binding</span> <span class="keyword">var</span> <span class="variable">post</span>: <span class="type">Post</span>
+  <span class="keyword">var</span> <span class="variable">body</span>: <span class="keyword">some</span> <span class="type">View</span> { ... }
+}
+</code></pre></body></html>
+<p>See <code>NavigationLink.init(unwrapping:destination:onNavigate:label)</code> for a version of this
+initializer that works with optional state instead of enum state.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>enum</th>
+    <td><code class="type">Binding&lt;Enum?&gt;</code></td>
+    <td><p>A binding to an optional source of truth for the destination. When <code>enum</code> is non-<code>nil</code>, and <code>casePath</code> successfully extracts a value, a non-optional binding to the value is passed to the <code>destination</code> closure. The destination can use this binding to produce its content and write changes back to the source of truth. Upstream changes to <code>enum</code> will also be instantly reflected in the destination. If <code>enum</code> becomes <code>nil</code>, the destination is dismissed.</p>
+</td>
+</tr>
+<tr>
+    <th>on​Navigate</th>
+    <td><code class="type">@escaping (Bool) -&gt; Void</code></td>
+    <td><p>A closure that executes when the link becomes active or inactive with a boolean that describes if the link was activated or not. Use this closure to populate the source of truth when it is passed a value of <code>true</code>. When passed <code>false</code>, the system will automatically write <code>nil</code> to <code>enum</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>destination</th>
+    <td><code class="type">@escaping (Binding&lt;Case&gt;) -&gt; Wrapped​Destination</code></td>
+    <td><p>A view for the navigation link to present.</p>
+</td>
+</tr>
+<tr>
+    <th>label</th>
+    <td><code class="type">() -&gt; Label</code></td>
+    <td><p>A view builder to produce a label describing the <code>destination</code> to present.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2022-10-19T00:21:25+0000">October 19, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

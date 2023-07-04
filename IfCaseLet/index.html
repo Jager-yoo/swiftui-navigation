@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftUINavigation - IfCaseLet</title>
+    <link rel="stylesheet" type="text/css" href="/swiftui-navigation/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/swiftui-navigation/">
+            <strong>
+                SwiftUINavigation
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#ifcaselet.init(_:pattern:ifcontent:elsecontent:)">init(_:​pattern:​if​Content:​else​Content:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#ifcaselet.`enum`">`enum`</a></li><li class="variable"><a href="#ifcaselet.casepath">case​Path</a></li><li class="variable"><a href="#ifcaselet.ifcontent">if​Content</a></li><li class="variable"><a href="#ifcaselet.elsecontent">else​Content</a></li><li class="variable"><a href="#ifcaselet.body">body</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">IfCase​Let</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">IfCaseLet</span>&lt;<span class="variable">Enum</span>, <span class="variable">Case</span>, <span class="variable">IfContent</span>, <span class="variable">ElseContent</span>&gt;: <span class="type">View</span>
+<span class="keyword">where</span> <span class="type">IfContent</span>: <span class="type">View</span>, <span class="type">ElseContent</span>: <span class="type">View</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A view that computes content by extracting a case from a binding to an enum and passing a
+non-optional binding to the case's associated value to its content closure.</p>
+
+</div>
+<div class="discussion">
+    <p>Useful when working with enum state and building views that require the associated value at a
+particular case.</p>
+
+<p>For example, a warehousing application may model the status of an inventory item using an enum.
+<code>IfCaseLet</code> can be used to produce bindings to the associated values of each case.</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">enum</span> <span class="type">ItemStatus</span> {
+  <span class="keyword">case</span> <span class="variable">inStock</span>(<span class="variable">quantity</span>: <span class="type">Int</span>)
+  <span class="keyword">case</span> <span class="variable">outOfStock</span>(<span class="variable">isOnBackOrder</span>: <span class="type">Bool</span>)
+}
+
+<span class="keyword">struct</span> <span class="type">InventoryItemView</span> {
+  <span class="attribute">@</span><span class="type">State</span> <span class="keyword">var</span> <span class="variable">status</span>: <span class="type">ItemStatus</span>
+
+  <span class="keyword">var</span> <span class="variable">body</span>: <span class="keyword">some</span> <span class="type">View</span> {
+    <span class="variable">IfCaseLet</span>(<span class="keyword">self</span>.<span class="variable">$status</span>, <span class="variable">pattern</span>: /<span class="variable">ItemStatus</span>.<span class="variable">inStock</span>) { <span class="variable">$quantity</span> <span class="keyword">in</span>
+      <span class="variable">HStack</span> {
+        <span class="variable">Text</span>(<span class="string literal">"</span><span class="string literal">Quantity: </span>\<span class="string literal">(</span><span class="variable">quantity</span><span class="string literal">)</span><span class="string literal"/><span class="string literal">"</span>)
+        <span class="variable">Stepper</span>(<span class="string literal">"</span><span class="string literal">Quantity</span><span class="string literal">"</span>, <span class="variable">value</span>: <span class="type">$quantity</span>)
+      }
+      <span class="variable">Button</span>(<span class="string literal">"</span><span class="string literal">Out of stock</span><span class="string literal">"</span>) { <span class="keyword">self</span>.<span class="variable">status</span> = .<span class="variable">outOfStock</span>(<span class="variable">isOnBackOrder</span>: <span class="keyword">false</span>) }
+    }
+    <span class="variable">IfCaseLet</span>(<span class="keyword">self</span>.<span class="variable">$status</span>, <span class="variable">pattern</span>: /<span class="variable">ItemStatus</span>.<span class="variable">outOfStock</span>) { <span class="variable">$isOnBackOrder</span> <span class="keyword">in</span>
+      <span class="variable">Toggle</span>(<span class="string literal">"</span><span class="string literal">Is on back order?</span><span class="string literal">"</span>, <span class="variable">isOn</span>: <span class="type">$isOnBackOrder</span>)
+      <span class="variable">Button</span>(<span class="string literal">"</span><span class="string literal">In stock</span><span class="string literal">"</span>) { <span class="keyword">self</span>.<span class="variable">status</span> = .<span class="variable">inStock</span>(<span class="variable">quantity</span>: <span class="number literal">1</span>) }
+    }
+  }
+}
+</code></pre></body></html>
+<p>To exhaustively handle every case of a binding to an enum, see <code>Switch</code>. Or, to unwrap a
+binding to an optional, see <code>IfLet</code>.</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        <figure>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: %7 Pages: 1 -->
+<svg width="872pt" height="116pt"
+ viewBox="0.00 0.00 872.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>%7</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 868,-112 868,4 -4,4"/>
+<!-- IfCaseLet -->
+<g id="node1" class="node structure current">
+<title>IfCaseLet</title>
+<g id="a_node1"><a xlink:href="/swiftui-navigation/IfCaseLet" xlink:title="IfCaseLet">
+<path fill="none" stroke="#000000" stroke-width="3" d="M528,-108C528,-108 336,-108 336,-108 330,-108 324,-102 324,-96 324,-96 324,-84 324,-84 324,-78 330,-72 336,-72 336,-72 528,-72 528,-72 534,-72 540,-78 540,-84 540,-84 540,-96 540,-96 540,-102 534,-108 528,-108"/>
+<text text-anchor="middle" x="432" y="-86.3" font-family="Menlo" font-size="14.00" fill="#000000">IfCaseLet</text>
+</a>
+</g>
+</g>
+<!-- View -->
+<g id="node2" class="node unknown">
+<title>View</title>
+<path fill="none" stroke="#000000" d="M528,-36C528,-36 336,-36 336,-36 330,-36 324,-30 324,-24 324,-24 324,-12 324,-12 324,-6 330,0 336,0 336,0 528,0 528,0 534,0 540,-6 540,-12 540,-12 540,-24 540,-24 540,-30 534,-36 528,-36"/>
+<text text-anchor="middle" x="432" y="-14.3" font-family="Menlo" font-size="14.00" fill="#000000">View</text>
+</g>
+<!-- IfCaseLet&#45;&gt;View -->
+<g id="edge1" class="edge conformsTo">
+<title>IfCaseLet&#45;&gt;View</title>
+<path fill="none" stroke="#000000" d="M432,-71.8314C432,-64.131 432,-54.9743 432,-46.4166"/>
+<polygon fill="#000000" stroke="#000000" points="435.5001,-46.4132 432,-36.4133 428.5001,-46.4133 435.5001,-46.4132"/>
+</g>
+</g>
+</svg>
+
+
+    <figcaption hidden>Inheritance graph for IfCaseLet.</figcaption>
+</figure>
+        <h3>Conforms To</h3>
+<dl>
+    <dt class="unknown"><code>View</code></dt>
+</dl>
+</section>
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="ifcaselet.init(_:pattern:ifcontent:elsecontent:)">
+    <h3>
+        <code><a href="#ifcaselet.init(_:pattern:ifcontent:elsecontent:)">init(_:​pattern:​if​Content:​else​Content:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(
+    <span class="keyword">_</span> <span class="variable">`enum`</span>: <span class="type">Binding</span>&lt;<span class="type">Enum</span>&gt;,
+    <span class="variable">pattern</span> <span class="variable">casePath</span>: <span class="type">CasePath</span>&lt;<span class="type">Enum</span>, <span class="type">Case</span>&gt;,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">ifContent</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Binding</span>&lt;<span class="type">Case</span>&gt;) -&gt; <span class="type">IfContent</span>,
+    <span class="attribute">@</span><span class="type">ViewBuilder</span> <span class="variable">elseContent</span>: () -&gt; <span class="type">ElseContent</span>
+  )  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Computes content by extracting a case from a binding to an enum and passing a non-optional
+binding to the case's associated value to its content closure.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>enum</th>
+    <td></td>
+    <td><p>A binding to an enum that holds the source of truth for the content at a particular case. When <code>casePath</code> successfully extracts a value from <code>enum</code>, a non-optional binding to the value is passed to the <code>content</code> closure. The closure can use this binding to produce its content and write changes back to the source of truth. Upstream changes to the case's value will also be instantly reflected in the presented content. If <code>enum</code> becomes a different case, nothing is computed.</p>
+</td>
+</tr>
+<tr>
+    <th>case​Path</th>
+    <td><code class="type">Case​Path&lt;Enum, Case&gt;</code></td>
+    <td><p>A case path that identifies a case of <code>enum</code> that holds a source of truth for the content.</p>
+</td>
+</tr>
+<tr>
+    <th>if​Content</th>
+    <td><code class="type">@escaping (Binding&lt;Case&gt;) -&gt; IfContent</code></td>
+    <td><p>A closure for computing content when <code>enum</code> matches a particular case.</p>
+</td>
+</tr>
+<tr>
+    <th>else​Content</th>
+    <td><code class="type">() -&gt; Else​Content</code></td>
+    <td><p>A closure for computing content when <code>enum</code> does not match the case.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="ifcaselet.`enum`">
+    <h3>
+        <code><a href="#ifcaselet.`enum`">`enum`</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">`enum`</span>: <span class="type">Binding</span>&lt;<span class="type">Enum</span>&gt;</body></html></code></pre>
+</div>
+</div>
+<div role="article" class="variable" id="ifcaselet.casepath">
+    <h3>
+        <code><a href="#ifcaselet.casepath">case​Path</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">casePath</span>: <span class="type">CasePath</span>&lt;<span class="type">Enum</span>, <span class="type">Case</span>&gt;</body></html></code></pre>
+</div>
+</div>
+<div role="article" class="variable" id="ifcaselet.ifcontent">
+    <h3>
+        <code><a href="#ifcaselet.ifcontent">if​Content</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">ifContent</span>: (<span class="type">Binding</span>&lt;<span class="type">Case</span>&gt;) -&gt; <span class="type">IfContent</span></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="variable" id="ifcaselet.elsecontent">
+    <h3>
+        <code><a href="#ifcaselet.elsecontent">else​Content</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">elseContent</span>: <span class="type">ElseContent</span></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="variable" id="ifcaselet.body">
+    <h3>
+        <code><a href="#ifcaselet.body">body</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">body</span>: <span class="keyword">some</span> <span class="type">View</span>  </body></html></code></pre>
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2022-10-19T00:21:25+0000">October 19, 2022</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>
